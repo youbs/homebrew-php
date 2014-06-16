@@ -405,6 +405,11 @@ INFO
       end
     end
   end
+  
+  def post_install
+    chmod_R "ug+w", lib+"php"
+    system "pear config-set php_ini #{etc}/php/#{php_version.to_s}/php.ini"
+  end
 
   def caveats
     s = []
